@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class TestController extends Controller
 {
     /**
      * Quick test endpoint.
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request) : JsonResponse 
     {
         return response()->json([
             'status' => 'ok',
