@@ -9,7 +9,7 @@ class TestController extends Controller
     /**
      * Quick test endpoint.
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         return response()->json([
             'status' => 'ok',
