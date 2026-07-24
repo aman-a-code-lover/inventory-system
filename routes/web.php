@@ -1,16 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\BrandController;
+use \App\Http\Controllers\UnitController;
 
 Route::inertia('/', 'Welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
 
-    Route::resource('categories', \App\Http\Controllers\CategoryController::class)
+    Route::resource('categories', CategoryController::class)
         ->except(['show']);
-    Route::resource('brands', \App\Http\Controllers\BrandController::class)
+    Route::resource('brands', BrandController::class)
         ->except(['show']);
+    Route::resource('units', UnitController::class)
+        ->except('show');
 });
 
 require __DIR__.'/settings.php';
