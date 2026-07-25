@@ -16,8 +16,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('precision')->default(4);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->index('code');
         });
     }
 

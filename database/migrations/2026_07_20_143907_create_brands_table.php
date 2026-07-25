@@ -11,13 +11,10 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150)->unique();
-            $table->string('slug', 160)->nullable();
+            $table->string('slug', 160)->nullable()->index();
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->index('name');
-            $table->index('slug');
         });
     }
 

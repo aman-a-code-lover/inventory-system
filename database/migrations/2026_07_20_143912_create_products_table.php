@@ -12,10 +12,10 @@ return new class extends Migration
             $table->id();
             $table->string('sku', 100)->nullable()->unique();
             $table->string('barcode', 100)->nullable()->unique();
-            $table->string('name', 255);
+            $table->string('name', 255)->index();
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('brand_id')->nullable();
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('brand_id')->nullable()->index();
+            $table->unsignedBigInteger('category_id')->nullable()->index();
             $table->unsignedBigInteger('unit_id')->nullable();
             $table->decimal('cost_price', 15, 2)->default(0);
             $table->decimal('sell_price', 15, 2)->default(0);
@@ -23,13 +23,6 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->index('name');
-            $table->index('sku');
-            $table->index('barcode');
-            $table->index('brand_id');
-            $table->index('category_id');
-
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('set null');

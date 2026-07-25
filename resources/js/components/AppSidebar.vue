@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid, Tag, Boxes, Ruler } from '@lucide/vue';
+import { BookOpen, FolderGit2, LayoutGrid, Tag, Boxes, Ruler,Package } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -18,6 +18,7 @@ import { dashboard } from '@/routes';
 import { index as categoriesIndex } from '@/routes/categories';
 import { index as brandsIndex } from '@/routes/brands';
 import { index as unitsIndex } from '@/routes/units';
+import { index as productsIndex } from '@/routes/products';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -40,6 +41,11 @@ const mainNavItems: NavItem[] = [
         title: 'Units',
         href: unitsIndex(),
         icon: Ruler,
+    },
+    {
+        title: 'Product',
+        href: productsIndex(),
+        icon: Package,
     },
 ];
 
