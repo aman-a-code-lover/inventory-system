@@ -15,10 +15,10 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import { index as categoriesIndex } from '@/routes/categories';
 import { index as brandsIndex } from '@/routes/brands';
-import { index as unitsIndex } from '@/routes/units';
+import { index as categoriesIndex } from '@/routes/categories';
 import { index as productsIndex } from '@/routes/products';
+import { index as unitsIndex } from '@/routes/units';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [

@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-import products from '@/routes/products';
-
+import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
+
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import InputError from '@/components/InputError.vue';
+import products from '@/routes/products';
 
 interface Option {
     id: number;
     name: string;
 }
 
-const props = defineProps<{
+defineProps<{
     categories: Option[];
     brands: Option[];
     units: Option[];

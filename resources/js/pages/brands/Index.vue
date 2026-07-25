@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
-import brands from '@/routes/brands';
+import { computed } from 'vue';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import brands from '@/routes/brands';
 
 const page = usePage();
 
