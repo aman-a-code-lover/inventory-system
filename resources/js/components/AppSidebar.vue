@@ -27,6 +27,11 @@ import { index as purchasePaymentsIndex } from '@/routes/purchase-payments';
 import { index as purchaseReturnsIndex } from '@/routes/purchase-returns';
 import { index as purchaseReturnItemsIndex } from '@/routes/purchase-return-items';
 import { index as customersIndex } from '@/routes/customers';
+import { index as salesIndex } from '@/routes/sales';
+import { index as saleItemsIndex } from '@/routes/sale-items';
+import { index as salePaymentsIndex } from '@/routes/sale-payments';
+import { index as saleReturnsIndex } from '@/routes/sale-returns';
+import { index as saleReturnItemsIndex } from '@/routes/sale-return-items';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -94,7 +99,33 @@ const mainNavItems: NavItem[] = [
         title: 'Customers',
         href: customersIndex(),
         icon: Package,
+    },
+    {
+        title: 'Sales',
+        href: salesIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Sale Items',
+        href: saleItemsIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Sale Payments',
+        href: salePaymentsIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Sale Returns',
+        href: saleReturnsIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Sale Return Items',
+        href: saleReturnItemsIndex(),
+        icon: Package,
     }
+
 ];
 
 const footerNavItems: NavItem[] = [

@@ -13,6 +13,11 @@ use \App\Http\Controllers\PurchasePaymentController;
 use \App\Http\Controllers\PurchaseReturnController;
 use \App\Http\Controllers\PurchaseReturnItemController;
 use \App\Http\Controllers\CustomerController;
+use \App\Http\Controllers\SaleController;
+use \App\Http\Controllers\SaleItemController;
+use \App\Http\Controllers\SalePaymentController;
+use \App\Http\Controllers\SaleReturnController;
+use \App\Http\Controllers\SaleReturnItemController;
 
 Route::inertia('/', 'Welcome')->name('home');
 
@@ -42,6 +47,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('purchase-return-items', PurchaseReturnItemController::class)
         ->except('show');
     Route::resource('customers', CustomerController::class)
+        ->except('show');
+    Route::resource('sales', SaleController::class)
+        ->except('show');
+    Route::resource('sale-items', SaleItemController::class)
+        ->except('show');
+    Route::resource('sale-payments', SalePaymentController::class)
+        ->except('show');
+    Route::resource('sale-returns', SaleReturnController::class)
+        ->except('show');
+    Route::resource('sale-return-items', SaleReturnItemController::class)
         ->except('show');
 });
 
