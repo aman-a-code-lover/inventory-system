@@ -68,6 +68,14 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    /**
+     * Product suppliers
+     */
+    public function productSuppliers(): HasMany
+    {
+        return $this->hasMany(ProductSupplier::class);
+    }
+
     public function suppliers()
     {
         return $this->belongsToMany(Supplier::class, 'product_suppliers')

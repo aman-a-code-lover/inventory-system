@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('discount_amount', 15, 2)->default(0);
             $table->string('lot_number', 120)->nullable();
             $table->date('expiry_date')->nullable();
+            $table->decimal('line_total', 15, 2)->default(0);
             $table->timestamps();
 
             $table->index('purchase_id');

@@ -13,7 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('reference_no', 120)->unique();
             $table->enum('status', ['draft', 'ordered', 'received', 'cancelled'])->default('draft');
-            $table->decimal('total_amount', 15, 2)->default(0);
+            $table->decimal('subtotal', 15, 2)->default(0);
             $table->decimal('tax_amount', 15, 2)->default(0);
             $table->decimal('discount_amount', 15, 2)->default(0);
             $table->decimal('paid_amount', 15, 2)->default(0);
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('warehouse_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->text('notes')->nullable();
+            $table->decimal('shipping_amount', 15, 2)->default(0);
             $table->timestamps();
             $table->softDeletes();
 

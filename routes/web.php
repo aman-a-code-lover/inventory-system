@@ -5,6 +5,9 @@ use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\BrandController;
 use \App\Http\Controllers\UnitController;
 use \App\Http\Controllers\ProductController;
+use \App\Http\Controllers\ProductSupplierController;
+use \App\Http\Controllers\SupplierController;
+use \App\Http\Controllers\PurchaseController;
 
 Route::inertia('/', 'Welcome')->name('home');
 
@@ -18,6 +21,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('units', UnitController::class)
         ->except('show');
     Route::resource('products', ProductController::class)
+        ->except('show');
+    Route::resource('product-suppliers', ProductSupplierController::class)
+        ->except('show');
+    Route::resource('suppliers', SupplierController::class)
+        ->except('show');
+    Route::resource('purchases', PurchaseController::class)
         ->except('show');
 });
 

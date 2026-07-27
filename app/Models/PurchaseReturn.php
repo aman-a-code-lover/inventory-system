@@ -22,7 +22,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  */
-#[Fillable(['purchase_id', 'supplier_id', 'reference_no', 'total_amount', 'return_date', 'created_by', 'notes'])]
+#[Fillable(['purchase_id', 'supplier_id', 'reference_no', 'refund_amount', 'return_date', 'created_by', 'notes'])]
 class PurchaseReturn extends Model
 {
     /** @use HasFactory */
@@ -37,7 +37,7 @@ class PurchaseReturn extends Model
     {
         return [
             'return_date' => 'date',
-            'total_amount' => 'decimal:2',
+            'refund_amount' => 'decimal:2',
         ];
     }
 

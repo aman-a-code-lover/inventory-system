@@ -27,7 +27,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  */
-#[Fillable(['supplier_id', 'reference_no', 'status', 'total_amount', 'tax_amount', 'discount_amount', 'paid_amount', 'purchase_date', 'due_date', 'warehouse_id', 'created_by', 'notes'])]
+#[Fillable(['supplier_id', 'reference_no', 'status', 'subtotal', 'tax_amount', 'discount_amount', 'paid_amount', 'purchase_date', 'due_date', 'warehouse_id', 'created_by', 'notes', 'shipping_amount'])]
 class Purchase extends Model
 {
     /** @use HasFactory */
@@ -46,7 +46,8 @@ class Purchase extends Model
             'paid_amount' => 'decimal:2',
             'purchase_date' => 'date',
             'tax_amount' => 'decimal:2',
-            'total_amount' => 'decimal:2',
+            'subtotal' => 'decimal:2',
+            'shipping_amount' => 'decimal:2',
         ];
     }
 

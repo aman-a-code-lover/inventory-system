@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid, Tag, Boxes, Ruler,Package } from '@lucide/vue';
+import { BookOpen, FolderGit2, LayoutGrid, Tag, Boxes, Ruler, Package,ShoppingCart } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -18,7 +18,10 @@ import { dashboard } from '@/routes';
 import { index as brandsIndex } from '@/routes/brands';
 import { index as categoriesIndex } from '@/routes/categories';
 import { index as productsIndex } from '@/routes/products';
+import { index as productSupplierIndex } from '@/routes/product-suppliers';
+import { index as supplierIndex } from '@/routes/suppliers';
 import { index as unitsIndex } from '@/routes/units';
+import { index as purchaseIndex } from '@/routes/purchases';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -47,6 +50,21 @@ const mainNavItems: NavItem[] = [
         href: productsIndex(),
         icon: Package,
     },
+    {
+        title: 'Product Supplier',
+        href: productSupplierIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Supplier',
+        href: supplierIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Purchases',
+        href: purchaseIndex(),
+        icon: ShoppingCart,
+    }
 ];
 
 const footerNavItems: NavItem[] = [

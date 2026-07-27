@@ -9,17 +9,52 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_suppliers', function (Blueprint $table) {
+
             $table->id();
-            $table->unsignedBigInteger('product_id')->unique();
-            $table->unsignedBigInteger('supplier_id')->unique();
-            $table->string('supplier_sku', 120)->nullable();
-            $table->decimal('supplier_cost', 15, 2)->nullable();
-            $table->unsignedSmallInteger('lead_time_days')->default(0);
+
+            $table->foreignId('product_id')
+                ->constrained('products')
+                ->cascadeOnDelete();
+
+            $table->foreignId('supplier_id')
+                ->constrained('suppliers')
+                ->cascadeOnDelete();
+
+            // Supplier specific information
+            $table->string('supplier_sku', 120)
+                ->nullable();
+
+            $table->decimal('supplier_cost', 15, 2)
+                ->nullable();
+
+            $table->unsignedSmallInteger('lead_time_days')
+                ->default(0);
+
+            // Optional supplier preference
+            $table->boolean('is_primary')
+                ->default(false);
+
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+
+
+            /*
+             |--------------------------------------------------------------------------
+             | Indexes
+             |--------------------------------------------------------------------------
+             */
+
+            // Prevent duplicate product-supplier combination
+            $table->unique(
+                ['product_id', 'supplier_id'],
+                'product_supplier_unique'
+            );
+
+            // Faster supplier/product searching
+            $table->index('product_id');
+            $table->index('supplier_id');
         });
     }
+
 
     public function down(): void
     {

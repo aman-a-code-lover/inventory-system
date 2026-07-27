@@ -13,7 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('purchase_id')->nullable();
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('reference_no', 120)->unique();
-            $table->decimal('total_amount', 15, 2)->default(0);
+            $table->decimal('refund_amount', 15, 2)->default(0);
             $table->date('return_date');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->text('notes')->nullable();

@@ -18,7 +18,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['product_id', 'supplier_id', 'supplier_sku', 'supplier_cost', 'lead_time_days'])]
+#[Fillable(['product_id', 'supplier_id', 'supplier_sku', 'supplier_cost', 'lead_time_days', 'is_primary'])]
 class ProductSupplier extends Model
 {
     /** @use HasFactory */

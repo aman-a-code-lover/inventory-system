@@ -21,7 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['purchase_id', 'product_id', 'quantity', 'unit_price', 'tax_amount', 'discount_amount', 'lot_number', 'expiry_date'])]
+#[Fillable(['purchase_id', 'product_id', 'quantity', 'unit_price', 'tax_amount', 'discount_amount', 'lot_number', 'expiry_date', 'line_total'])]
 class PurchaseItem extends Model
 {
     /** @use HasFactory */
