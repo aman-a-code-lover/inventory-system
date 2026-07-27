@@ -26,6 +26,7 @@ import { index as purchaseItemsIndex } from '@/routes/purchase-items';
 import { index as purchasePaymentsIndex } from '@/routes/purchase-payments';
 import { index as purchaseReturnsIndex } from '@/routes/purchase-returns';
 import { index as purchaseReturnItemsIndex } from '@/routes/purchase-return-items';
+import { index as customersIndex } from '@/routes/customers';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -87,6 +88,11 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Purchase Return Items',
         href: purchaseReturnItemsIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Customers',
+        href: customersIndex(),
         icon: Package,
     }
 ];

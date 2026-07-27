@@ -12,6 +12,7 @@ use \App\Http\Controllers\PurchaseItemController;
 use \App\Http\Controllers\PurchasePaymentController;
 use \App\Http\Controllers\PurchaseReturnController;
 use \App\Http\Controllers\PurchaseReturnItemController;
+use \App\Http\Controllers\CustomerController;
 
 Route::inertia('/', 'Welcome')->name('home');
 
@@ -39,6 +40,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('purchase-returns', PurchaseReturnController::class)
         ->except('show');
     Route::resource('purchase-return-items', PurchaseReturnItemController::class)
+        ->except('show');
+    Route::resource('customers', CustomerController::class)
         ->except('show');
 });
 
