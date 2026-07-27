@@ -22,6 +22,7 @@ import { index as productSupplierIndex } from '@/routes/product-suppliers';
 import { index as supplierIndex } from '@/routes/suppliers';
 import { index as unitsIndex } from '@/routes/units';
 import { index as purchaseIndex } from '@/routes/purchases';
+import { index as purchaseItemsIndex } from '@/routes/purchase-items';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -64,6 +65,11 @@ const mainNavItems: NavItem[] = [
         title: 'Purchases',
         href: purchaseIndex(),
         icon: ShoppingCart,
+    },
+    {
+        title: 'Purchase Items',
+        href: purchaseItemsIndex(),
+        icon: Package,
     }
 ];
 

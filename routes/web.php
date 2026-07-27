@@ -8,6 +8,7 @@ use \App\Http\Controllers\ProductController;
 use \App\Http\Controllers\ProductSupplierController;
 use \App\Http\Controllers\SupplierController;
 use \App\Http\Controllers\PurchaseController;
+use \App\Http\Controllers\PurchaseItemController;
 
 Route::inertia('/', 'Welcome')->name('home');
 
@@ -27,6 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('suppliers', SupplierController::class)
         ->except('show');
     Route::resource('purchases', PurchaseController::class)
+        ->except('show');
+    Route::resource('purchase-items', PurchaseItemController::class)
         ->except('show');
 });
 

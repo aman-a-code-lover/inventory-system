@@ -13,9 +13,12 @@ interface Option {
     name: string;
 }
 
-const props = defineProps<{
-    suppliers: Option[];
-    warehouses: Option[];
+const {
+    suppliers,
+    warehouses,
+} = defineProps<{
+    suppliers: SupplierOption[];
+    warehouses: WarehouseOption[];
 }>();
 
 const form = useForm({
