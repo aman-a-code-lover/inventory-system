@@ -26,6 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
 
+            $table->index(['product_id']);
             $table->index(['product_id', 'warehouse_id']);
             $table->index('movement_type');
             $table->index('created_at');

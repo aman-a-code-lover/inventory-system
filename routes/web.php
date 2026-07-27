@@ -18,6 +18,10 @@ use \App\Http\Controllers\SaleItemController;
 use \App\Http\Controllers\SalePaymentController;
 use \App\Http\Controllers\SaleReturnController;
 use \App\Http\Controllers\SaleReturnItemController;
+use \App\Http\Controllers\InventoryBalanceController;
+use \App\Http\Controllers\StockAdjustmentController;
+use \App\Http\Controllers\StockAdjustmentItemController;
+use \App\Http\Controllers\StockMovementController;
 
 Route::inertia('/', 'Welcome')->name('home');
 
@@ -57,6 +61,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('sale-returns', SaleReturnController::class)
         ->except('show');
     Route::resource('sale-return-items', SaleReturnItemController::class)
+        ->except('show');
+    Route::resource('inventory-balances', InventoryBalanceController::class)
+        ->except('show');
+    Route::resource('stock-movements', StockMovementController::class)
+        ->except('show');
+    Route::resource('stock-adjustments', StockAdjustmentController::class)
+        ->except('show');
+    Route::resource('stock-adjustment-items', StockAdjustmentItemController::class)
         ->except('show');
 });
 

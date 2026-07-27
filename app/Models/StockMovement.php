@@ -67,18 +67,24 @@ class StockMovement extends Model
         return $this->belongsTo(Sale::class, 'sale_id');
     }
 
-    public function purchase_return(): BelongsTo
+    public function purchaseReturn(): BelongsTo
     {
         return $this->belongsTo(PurchaseReturn::class, 'purchase_return_id');
     }
 
-    public function sale_return(): BelongsTo
+    public function saleReturn(): BelongsTo
     {
         return $this->belongsTo(SaleReturn::class, 'sale_return_id');
     }
 
-    public function stock_adjustment(): BelongsTo
+    public function stockAdjustment(): BelongsTo
     {
         return $this->belongsTo(StockAdjustment::class, 'stock_adjustment_id');
     }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+    
 }

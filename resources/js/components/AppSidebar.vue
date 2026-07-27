@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid, Tag, Boxes, Ruler, Package,ShoppingCart } from '@lucide/vue';
+
+import {
+    BookOpen,
+    FolderGit2,
+    LayoutGrid,
+    Tag,
+    Boxes,
+    Ruler,
+    Package,
+    ShoppingCart,
+} from '@lucide/vue';
+
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
+
 import {
     Sidebar,
     SidebarContent,
@@ -14,24 +26,21 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+
 import { dashboard } from '@/routes';
+
 import { index as brandsIndex } from '@/routes/brands';
 import { index as categoriesIndex } from '@/routes/categories';
-import { index as productsIndex } from '@/routes/products';
-import { index as productSupplierIndex } from '@/routes/product-suppliers';
-import { index as supplierIndex } from '@/routes/suppliers';
 import { index as unitsIndex } from '@/routes/units';
-import { index as purchaseIndex } from '@/routes/purchases';
-import { index as purchaseItemsIndex } from '@/routes/purchase-items';
-import { index as purchasePaymentsIndex } from '@/routes/purchase-payments';
-import { index as purchaseReturnsIndex } from '@/routes/purchase-returns';
-import { index as purchaseReturnItemsIndex } from '@/routes/purchase-return-items';
+import { index as productsIndex } from '@/routes/products';
+import { index as supplierIndex } from '@/routes/suppliers';
 import { index as customersIndex } from '@/routes/customers';
+import { index as purchaseIndex } from '@/routes/purchases';
 import { index as salesIndex } from '@/routes/sales';
-import { index as saleItemsIndex } from '@/routes/sale-items';
-import { index as salePaymentsIndex } from '@/routes/sale-payments';
-import { index as saleReturnsIndex } from '@/routes/sale-returns';
-import { index as saleReturnItemsIndex } from '@/routes/sale-return-items';
+import { index as inventoryBalancesIndex } from '@/routes/inventory-balances';
+import { index as stockAdjustmentsIndex } from '@/routes/stock-adjustments';
+import { index as stockMovementsIndex } from '@/routes/stock-movements';
+
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -40,92 +49,72 @@ const mainNavItems: NavItem[] = [
         href: dashboard(),
         icon: LayoutGrid,
     },
+
     {
         title: 'Categories',
         href: categoriesIndex(),
         icon: Tag,
     },
+
     {
         title: 'Brands',
         href: brandsIndex(),
         icon: Boxes,
     },
+
     {
         title: 'Units',
         href: unitsIndex(),
         icon: Ruler,
     },
+
     {
-        title: 'Product',
+        title: 'Products',
         href: productsIndex(),
         icon: Package,
     },
+
     {
-        title: 'Product Supplier',
-        href: productSupplierIndex(),
-        icon: Package,
-    },
-    {
-        title: 'Supplier',
+        title: 'Suppliers',
         href: supplierIndex(),
         icon: Package,
     },
-    {
-        title: 'Purchases',
-        href: purchaseIndex(),
-        icon: ShoppingCart,
-    },
-    {
-        title: 'Purchase Items',
-        href: purchaseItemsIndex(),
-        icon: Package,
-    },
-    {
-        title: 'Purchase Payments',
-        href: purchasePaymentsIndex(),
-        icon: Package,
-    },
-    {
-        title: 'Purchase Returns',
-        href: purchaseReturnsIndex(),
-        icon: Package,
-    },
-    {
-        title: 'Purchase Return Items',
-        href: purchaseReturnItemsIndex(),
-        icon: Package,
-    },
+
     {
         title: 'Customers',
         href: customersIndex(),
         icon: Package,
     },
+
+    {
+        title: 'Purchases',
+        href: purchaseIndex(),
+        icon: ShoppingCart,
+    },
+
     {
         title: 'Sales',
         href: salesIndex(),
-        icon: Package,
+        icon: ShoppingCart,
     },
-    {
-        title: 'Sale Items',
-        href: saleItemsIndex(),
-        icon: Package,
-    },
-    {
-        title: 'Sale Payments',
-        href: salePaymentsIndex(),
-        icon: Package,
-    },
-    {
-        title: 'Sale Returns',
-        href: saleReturnsIndex(),
-        icon: Package,
-    },
-    {
-        title: 'Sale Return Items',
-        href: saleReturnItemsIndex(),
-        icon: Package,
-    }
 
+    {
+        title: 'Inventory Balances',
+        href: inventoryBalancesIndex(),
+        icon: Package,
+    },
+
+    {
+        title: 'Stock Adjustments',
+        href: stockAdjustmentsIndex(),
+        icon: Package,
+    },
+
+    {
+        title: 'Stock Movements',
+        href: stockMovementsIndex(),
+        icon: Package,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
