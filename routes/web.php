@@ -9,6 +9,9 @@ use \App\Http\Controllers\ProductSupplierController;
 use \App\Http\Controllers\SupplierController;
 use \App\Http\Controllers\PurchaseController;
 use \App\Http\Controllers\PurchaseItemController;
+use \App\Http\Controllers\PurchasePaymentController;
+use \App\Http\Controllers\PurchaseReturnController;
+use \App\Http\Controllers\PurchaseReturnItemController;
 
 Route::inertia('/', 'Welcome')->name('home');
 
@@ -30,6 +33,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('purchases', PurchaseController::class)
         ->except('show');
     Route::resource('purchase-items', PurchaseItemController::class)
+        ->except('show');
+    Route::resource('purchase-payments', PurchasePaymentController::class)
+        ->except('show');
+    Route::resource('purchase-returns', PurchaseReturnController::class)
+        ->except('show');
+    Route::resource('purchase-return-items', PurchaseReturnItemController::class)
         ->except('show');
 });
 

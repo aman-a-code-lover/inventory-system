@@ -25,7 +25,7 @@ class ProductSupplierController extends Controller
             ->paginate(10);
 
 
-        return Inertia::render('ProductSuppliers/Index', [
+        return Inertia::render('product-suppliers/Index', [
             'productSuppliers' => $productSuppliers,
         ]);
     }
@@ -36,7 +36,7 @@ class ProductSupplierController extends Controller
      */
     public function create()
     {
-        return Inertia::render('ProductSuppliers/Create', [
+        return Inertia::render('product-suppliers/Create', [
 
             'products' => Product::select('id', 'name')
                 ->orderBy('name')
@@ -76,7 +76,7 @@ class ProductSupplierController extends Controller
         ]);
 
 
-        return Inertia::render('ProductSuppliers/Show', [
+        return Inertia::render('product-suppliers/Show', [
             'productSupplier' => $productSupplier,
         ]);
     }
@@ -87,7 +87,7 @@ class ProductSupplierController extends Controller
      */
     public function edit(ProductSupplier $productSupplier)
     {
-        return Inertia::render('ProductSuppliers/Edit', [
+        return Inertia::render('product-suppliers/Edit', [
 
             'productSupplier' => $productSupplier,
 

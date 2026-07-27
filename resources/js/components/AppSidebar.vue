@@ -23,6 +23,9 @@ import { index as supplierIndex } from '@/routes/suppliers';
 import { index as unitsIndex } from '@/routes/units';
 import { index as purchaseIndex } from '@/routes/purchases';
 import { index as purchaseItemsIndex } from '@/routes/purchase-items';
+import { index as purchasePaymentsIndex } from '@/routes/purchase-payments';
+import { index as purchaseReturnsIndex } from '@/routes/purchase-returns';
+import { index as purchaseReturnItemsIndex } from '@/routes/purchase-return-items';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -69,6 +72,21 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Purchase Items',
         href: purchaseItemsIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Purchase Payments',
+        href: purchasePaymentsIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Purchase Returns',
+        href: purchaseReturnsIndex(),
+        icon: Package,
+    },
+    {
+        title: 'Purchase Return Items',
+        href: purchaseReturnItemsIndex(),
         icon: Package,
     }
 ];
