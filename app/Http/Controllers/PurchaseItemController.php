@@ -11,9 +11,16 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Services\InventoryService;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseItemController extends Controller
 {
+    public function __construct(
+        private InventoryService $inventoryService,
+    ) {}
+
+
     public function index(Request $request): Response
     {
         $search = $request->string('search');
@@ -55,11 +62,37 @@ class PurchaseItemController extends Controller
     public function store(
         PurchaseItemStoreRequest $request
     ): RedirectResponse {
-        PurchaseItem::create($request->validated());
+
+        DB::transaction(function () use ($request) {
+
+            $purchaseItem = PurchaseItem::create(
+                $request->validated()
+            );
+
+            $purchase = Purchase::findOrFail(
+                $purchaseItem->purchase_id
+            );
+
+            $this->inventoryService->increaseStock(
+                productId: $purchaseItem->product_id,
+                warehouseId: $purchase->warehouse_id,
+                quantity: (float) $purchaseItem->quantity,
+                unitCost: (float) $purchaseItem->unit_cost,
+                references: [
+                    'movement_type' => 'purchase',
+                    'reference_id' => $purchase->id,
+                    'purchase_id' => $purchase->id,
+                ],
+                note: 'Purchase #' . $purchase->reference_no,
+            );
+        });
 
         return redirect()
             ->route('purchase-items.index')
-            ->with('success', 'Purchase item created successfully.');
+            ->with(
+                'success',
+                'Purchase item created successfully.'
+            );
     }
 
     public function edit(

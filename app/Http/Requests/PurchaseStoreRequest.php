@@ -18,8 +18,15 @@ class PurchaseStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'supplier_id' => ['nullable', 'exists:suppliers,id'],
-            'warehouse_id' => ['nullable', 'exists:warehouses,id'],
+            'supplier_id' => [
+                'required',
+                'exists:suppliers,id',
+            ],
+
+            'warehouse_id' => [
+                'nullable',
+                'exists:warehouses,id',
+            ],
 
             'reference_no' => [
                 'required',
@@ -38,16 +45,74 @@ class PurchaseStoreRequest extends FormRequest
                 ]),
             ],
 
-            'subtotal' => ['required', 'numeric', 'min:0'],
-            'tax_amount' => ['required', 'numeric', 'min:0'],
-            'discount_amount' => ['required', 'numeric', 'min:0'],
-            'shipping_amount' => ['required', 'numeric', 'min:0'],
-            'paid_amount' => ['required', 'numeric', 'min:0'],
+            'purchase_date' => [
+                'required',
+                'date',
+            ],
 
-            'purchase_date' => ['required', 'date'],
-            'due_date' => ['nullable', 'date', 'after_or_equal:purchase_date'],
+            'due_date' => [
+                'nullable',
+                'date',
+                'after_or_equal:purchase_date',
+            ],
 
-            'notes' => ['nullable', 'string'],
+            'tax_amount' => [
+                'nullable',
+                'numeric',
+                'min:0',
+            ],
+
+            'discount_amount' => [
+                'nullable',
+                'numeric',
+                'min:0',
+            ],
+
+            'shipping_amount' => [
+                'nullable',
+                'numeric',
+                'min:0',
+            ],
+
+            'paid_amount' => [
+                'nullable',
+                'numeric',
+                'min:0',
+            ],
+
+            'notes' => [
+                'nullable',
+                'string',
+            ],
+
+            /*
+        |--------------------------------------------------------------------------
+        | Purchase Items
+        |--------------------------------------------------------------------------
+        */
+
+            'items' => [
+                'required',
+                'array',
+                'min:1',
+            ],
+
+            'items.*.product_id' => [
+                'required',
+                'exists:products,id',
+            ],
+
+            'items.*.quantity' => [
+                'required',
+                'numeric',
+                'gt:0',
+            ],
+
+            'items.*.unit_price' => [
+                'required',
+                'numeric',
+                'min:0',
+            ],
         ];
     }
 }
