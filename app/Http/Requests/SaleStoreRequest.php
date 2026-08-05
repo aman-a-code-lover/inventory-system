@@ -86,6 +86,28 @@ class SaleStoreRequest extends FormRequest
                 'nullable',
                 'string',
             ],
+            'items' => [
+                'required',
+                'array',
+                'min:1',
+            ],
+
+            'items.*.product_id' => [
+                'required',
+                'exists:products,id',
+            ],
+
+            'items.*.quantity' => [
+                'required',
+                'numeric',
+                'gt:0',
+            ],
+
+            'items.*.unit_price' => [
+                'required',
+                'numeric',
+                'min:0',
+            ],
         ];
     }
 }

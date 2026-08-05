@@ -7,8 +7,12 @@ use App\Http\Requests\SaleUpdateRequest;
 use App\Models\Customer;
 use App\Models\Sale;
 use App\Models\Warehouse;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
+use App\Models\SaleItem;
+use App\Services\InventoryService;
 
 class SaleController extends Controller
 {
@@ -92,6 +96,13 @@ class SaleController extends Controller
                 )
                     ->orderBy('name')
                     ->get(),
+
+                'products' => Product::select(
+                    'id',
+                    'name'
+                )
+                    ->orderBy('name')
+                    ->get(),
             ]
         );
     }
@@ -102,18 +113,62 @@ class SaleController extends Controller
      * Store sale.
      */
     public function store(
-        SaleStoreRequest $request
+        SaleStoreRequest $request,
+        InventoryService $inventoryService
     ) {
 
-        Sale::create(
-            $request->validated()
-        );
+        DB::transaction(function () use (
+            $request,
+            $inventoryService
+        ) {
 
+            $data = $request->validated();
+
+            $sale = Sale::create([
+                'customer_id' => $data['customer_id'],
+                'warehouse_id' => $data['warehouse_id'],
+                'reference_no' => $data['reference_no'],
+                'status' => $data['status'],
+                'total_amount' => $data['total_amount'],
+                'tax_amount' => $data['tax_amount'] ?? 0,
+                'discount_amount' => $data['discount_amount'] ?? 0,
+                'paid_amount' => $data['paid_amount'] ?? 0,
+                'sale_date' => $data['sale_date'],
+                'due_date' => $data['due_date'] ?? null,
+                'notes' => $data['notes'] ?? null,
+                'created_by' => auth()->id(),
+            ]);
+
+            foreach ($data['items'] as $item) {
+
+                SaleItem::create([
+                    'sale_id' => $sale->id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $item['unit_price'],
+                    'tax_amount' => 0,
+                    'discount_amount' => 0,
+                    'lot_number' => null,
+                    'expiry_date' => null,
+                ]);
+
+                $inventoryService->decreaseStock(
+                    productId: $item['product_id'],
+                    warehouseId: $sale->warehouse_id,
+                    quantity: $item['quantity'],
+                    unitCost: $item['unit_price'],
+                    references: [
+                        'movement_type' => 'sale',
+                        'reference_id' => $sale->id,
+                        'sale_id' => $sale->id,
+                    ],
+                    note: 'Sale : ' . $sale->reference_no,
+                );
+            }
+        });
 
         return redirect()
-
             ->route('sales.index')
-
             ->with(
                 'success',
                 'Sale created successfully.'
@@ -167,6 +222,13 @@ class SaleController extends Controller
                     ->get(),
 
                 'warehouses' => Warehouse::select(
+                    'id',
+                    'name'
+                )
+                    ->orderBy('name')
+                    ->get(),
+                    
+                'products' => Product::select(
                     'id',
                     'name'
                 )
